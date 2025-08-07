@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>画像増殖サイト（効果音つき）</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .image {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const imageUrl = "kappy_face.jpg";
+    const soundUrl = "https://soundeffect-lab.info/sound/various/mp3/click1.mp3"; // ←効果音URL
+    const maxImages = 100;
+
+    function addImage(x, y) {
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      img.className = "image";
+
+      img.style.left = `${x - 75}px`;
+      img.style.top = `${y - 75}px`;
+
+      img.addEventListener("click", () => {
+        const images = document.querySelectorAll(".image");
+        if (images.length >= maxImages) return;
+
+        // 効果音を鳴らす
+        const clickSound = new Audio(soundUrl);
+        clickSound.play();
+
+        const randX = Math.random() * window.innerWidth;
+        const randY = Math.random() * window.innerHeight;
+        addImage(randX, randY);
+      });
+
+      document.body.appendChild(img);
+    }
+
+    window.onload = () => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      addImage(centerX, centerY);
+    };
+  </script>
+</body>
+</html>
