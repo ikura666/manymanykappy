@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>めにめにかっぴー</title>
+  <title>画像増殖サイト（MP3効果音つき）</title>
   <style>
     body {
       margin: 0;
@@ -23,8 +23,8 @@
 </head>
 <body>
   <script>
-    const imageUrl = "kappy_face.jpg";
-    const soundUrl = "https://soundeffect-lab.info/sound/various/mp3/click1.mp3"; // ←効果音URL
+    const imageUrl = "kappy_face.jpg"; // 任意の画像URLに変更可
+    const soundUrl = "ママ.mp3"; // 同じフォルダにあるMP3ファイル
     const maxImages = 100;
 
     function addImage(x, y) {
@@ -43,6 +43,7 @@
         const clickSound = new Audio(soundUrl);
         clickSound.play();
 
+        // ランダム位置に画像を追加
         const randX = Math.random() * window.innerWidth;
         const randY = Math.random() * window.innerHeight;
         addImage(randX, randY);
@@ -51,6 +52,7 @@
       document.body.appendChild(img);
     }
 
+    // 最初の1枚（中央）
     window.onload = () => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
